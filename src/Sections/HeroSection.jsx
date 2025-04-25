@@ -14,11 +14,6 @@ const HeroSection = () => {
     ];
 
     // Helper function
-    /* const getItemContent = (id) => {
-        const item = textContent.find((item) => item.id === id);
-        return item ? item.content : "";
-    }
-    */
     const getItemContent = (id, defaultValue = "") => {
         const item = textContent.find((item) => item.id === id);
         if (!item) return defaultValue;
