@@ -14,10 +14,22 @@ const HeroSection = () => {
     ];
 
     // Helper function
-    const getItemContent = (id) => {
+    /* const getItemContent = (id) => {
         const item = textContent.find((item) => item.id === id);
         return item ? item.content : "";
     }
+    */
+    const getItemContent = (id, defaultValue = "") => {
+        const item = textContent.find((item) => item.id === id);
+        if (!item) return defaultValue;
+
+        const content = item.content;
+
+        //if content is an array, return array
+        if (Array.isArray(content)) return content;
+
+        return [content];
+    };
 
     // Error handling - check if data is available
     if (!getItemContent("headline_txt") || !getItemContent("subheading_txt") || !getItemContent("CTA_label") || !getItemContent("paragraph_txt")) {
@@ -26,13 +38,15 @@ const HeroSection = () => {
 
     return(
         <div className="grid grid-cols-2">
-            <div>
+            <div className="p-2 space-y-4 content-center">
                 <h1>{getItemContent("headline_txt")}</h1>
                 <h3>{getItemContent("subheading_txt")}</h3>
-                <button>{getItemContent("CTA_label")}</button>
+                <button className="bg-blue-500">{getItemContent("CTA_label")}</button>
             </div>
-            <div>
-                <p>{getItemContent("paragraph_txt")}</p>
+            <div className="p-2 space-y-4 text-justify">
+                {getItemContent("paragraph_txt").map((p,i) => (
+                    <p key = {i}> {p} </p>
+                ))}
             </div>
         </div>
     )
