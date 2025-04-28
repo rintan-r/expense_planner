@@ -1,5 +1,8 @@
+import { useNavigate } from "react-router";
 
-const HeroSection = () => {
+const Home = () => {
+
+    const navigate = useNavigate();
 
     //Text Content of hero section
     const textContent = [
@@ -32,13 +35,13 @@ const HeroSection = () => {
     }
 
     return(
-        <div className="grid grid-cols-2">
-            <div className="p-2 space-y-4 content-center">
+        <div className="grid grid-cols-2 screen-min">
+            <div className="p-24 space-y-5 content-center">
                 <h1>{getItemContent("headline_txt")}</h1>
                 <h3>{getItemContent("subheading_txt")}</h3>
-                <button className="bg-blue-500">{getItemContent("CTA_label")}</button>
+                <button className="btn btn-primary" onClick={() => navigate('/get-started') }>{getItemContent("CTA_label")}</button>
             </div>
-            <div className="p-2 space-y-4 text-justify">
+            <div className="p-32 space-y-5 text-justify">
                 {getItemContent("paragraph_txt").map((p,i) => (
                     <p key = {i}> {p} </p>
                 ))}
@@ -48,6 +51,6 @@ const HeroSection = () => {
 
 }
 
-export default HeroSection
+export default Home
 
 
